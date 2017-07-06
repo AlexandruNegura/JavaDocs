@@ -131,6 +131,7 @@ public class Exercise4Test {
         };
 
         testingStringValues.sort(cmp);
+
         System.out.println("AFISARE COMPARARE");
         for (Object obj : testingStringValues) {
             System.out.println(obj);
