@@ -1,8 +1,6 @@
 package exercise6;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Create a resizable generic HashMap. When the number of entries exceeds (load capacity * bucket array size)
@@ -19,134 +17,154 @@ import java.util.Set;
  */
 public class MyResizableHashMap<K, V> {
 
-    /**
-     * The array of buckets.
-     */
-    private Node<K, V>[] buckets;
+	/**
+	 * The array of buckets.
+	 */
+	private Node<K, V>[] buckets;
 
-    /**
-     * Default initial capacity for the bucket array.
-     */
-    private final int DEFAULT_BUCKET_ARRAY_SIZE = 16;
+	/**
+	 * Default initial capacity for the bucket array.
+	 */
+	private final int DEFAULT_BUCKET_ARRAY_SIZE = 16;
 
-    /**
-     * The maximum accepted load property of the data structure.
-     */
-    private static final double LOAD_FACTOR = 0.75d;
+	/**
+	 * The maximum accepted load property of the data structure.
+	 */
+	private static final double LOAD_FACTOR = 0.75d;
 
-    /**
-     * The factor for increasing the size of the data structure.
-     */
-    private static final int INCREASE_SIZE_FACTOR = 2;
+	/**
+	 * The factor for increasing the size of the data structure.
+	 */
+	private static final int INCREASE_SIZE_FACTOR = 2;
 
-    /**
-     * The number of entries stored in the Map.
-     */
-    private int size;
-    private int capacity;
+	/**
+	 * The number of entries stored in the Map.
+	 */
+	private int size;
+	private int capacity;
 
-    @SuppressWarnings("all")
-    public MyResizableHashMap() {
+	@SuppressWarnings("all")
+	public MyResizableHashMap() {
 
-        // Initialize buckets list
-        buckets = new Node[DEFAULT_BUCKET_ARRAY_SIZE];
-        size = 0;
-        capacity = DEFAULT_BUCKET_ARRAY_SIZE;
-    }
+		// Initialize buckets list
+		buckets = new Node[DEFAULT_BUCKET_ARRAY_SIZE];
+		size = 0;
+		capacity = DEFAULT_BUCKET_ARRAY_SIZE;
+	}
 
-    private void resize() {
-        //  function that does the rehashing of the HashMap
-        Node<K, V>[] newBucket = new Node[]
+	@SuppressWarnings("all")
+	private void resize() {
+		//  function that does the rehashing of the HashMap
+		capacity = capacity * INCREASE_SIZE_FACTOR;
+		size = 0;
 
-    }
+		List<Node<K, V>> oldBuckets = new LinkedList<>();
 
-    public V get(K key) {
-        if(key == null) {
-            return null;
-        }
+		for (Node<K, V> node : buckets) {
+			while (node != null) {
+				oldBuckets.add(node);
+				node = node.getNextElement();
+			}
+		}
 
-        int hash = Math.abs(key.hashCode()) % capacity;
+		Node<K, V>[] newBuckets = new Node[capacity];
+		buckets = newBuckets;
 
-        if(capacity < hash ){
-            return null;
-        }
+		for (Node<K, V> node : oldBuckets) {
+			K key = node.getEntry().getKey();
+			V value = node.getEntry().getValue();
 
-        Node<K, V> node = buckets[hash];
+			this.put(key, value);
+		}
+	}
 
-        while(node != null){
-            if(node.getEntry().getKey().equals(key)){
-                return node.getEntry().getValue();
-            }
+	public V get(K key) {
+		if (key == null) {
+			return null;
+		}
 
-            node = node.getNextElement();
-        }
+		int hash = Math.abs(key.hashCode()) % capacity;
 
-        return null;
-    }
+		if (capacity < hash) {
+			return null;
+		}
 
-    public void put(K key, V value) {
-        if (key == null) {
-            buckets[0].setNextElement(new Node<>(new MyEntry<>(key, value), 0, null));
-            size++;
-            return;
-        }
+		Node<K, V> node = buckets[hash];
 
-        int hash = Math.abs(key.hashCode()) % capacity;
+		while (node != null) {
+			if (node.getEntry().getKey().equals(key)) {
+				return node.getEntry().getValue();
+			}
 
-        if (capacity < hash) {
-            // TODO do resize
-        }
+			node = node.getNextElement();
+		}
 
-        Node<K, V> node = buckets[hash];
+		return null;
+	}
 
-        while(node != null){
-            if(node.getEntry().getKey().equals(key)){
-                node.getEntry().setValue(value);
-                return;
-            }
+	public void put(K key, V value) {
+		if (key == null) {
+			buckets[0].setNextElement(new Node<>(new MyEntry<>(key, value), 0, null));
+			size++;
+			return;
+		}
 
-            node = node.getNextElement();
-        }
+		int hash = Math.abs(key.hashCode()) % capacity;
 
-        node = buckets[hash];
-        Node<K,V> newNode = new Node<>(new MyEntry<>(key, value), hash, node);
-        buckets[hash] = newNode;
+		if (((double) size) / ((double) capacity) > LOAD_FACTOR) {
+			resize();
+		}
 
-        size++;
-    }
+		Node<K, V> node = buckets[hash];
 
-    public Set<K> keySet() {
-        Set<K> keySet = new HashSet<>();
+		while (node != null) {
+			if (node.getEntry().getKey().equals(key)) {
+				node.getEntry().setValue(value);
+				return;
+			}
 
-        for (Node<K, V> node : buckets) {
-            while (node != null) {
-                MyEntry<K, V> entry = node.getEntry();
-                keySet.add(entry.getKey());
+			node = node.getNextElement();
+		}
 
-                node = node.getNextElement();
-            }
-        }
+		node = buckets[hash];
+		Node<K, V> newNode = new Node<>(new MyEntry<>(key, value), hash, node);
+		buckets[hash] = newNode;
 
-        return keySet;
-    }
+		size++;
+	}
 
-    public Collection<V> values() {
-        Set<V> keySet = new HashSet<>();
+	public Set<K> keySet() {
+		Set<K> keySet = new HashSet<>();
 
-        for (Node<K, V> node : buckets) {
-            while (node != null) {
-                MyEntry<K, V> entry = node.getEntry();
-                keySet.add(entry.getValue());
+		for (Node<K, V> node : buckets) {
+			while (node != null) {
+				MyEntry<K, V> entry = node.getEntry();
+				keySet.add(entry.getKey());
 
-                node = node.getNextElement();
-            }
-        }
+				node = node.getNextElement();
+			}
+		}
 
-        return keySet;
-    }
+		return keySet;
+	}
 
-    public V remove(K key) {
-        //  Returns the value associated with the key removed from the map or null if the key wasn't found
+	public Collection<V> values() {
+		Set<V> keySet = new HashSet<>();
+
+		for (Node<K, V> node : buckets) {
+			while (node != null) {
+				MyEntry<K, V> entry = node.getEntry();
+				keySet.add(entry.getValue());
+
+				node = node.getNextElement();
+			}
+		}
+
+		return keySet;
+	}
+
+	public V remove(K key) {
+		//  Returns the value associated with the key removed from the map or null if the key wasn't found
 //        for(LinkedList<MyEntry> entries : buckets){
 //            for(MyEntry myEntry : entries){
 //                if(myEntry.getKey().equals(key)){
@@ -158,150 +176,150 @@ public class MyResizableHashMap<K, V> {
 //            }
 //        }
 
-        int i = 0;
+		int i = 0;
 
-        for (Node<K, V> node : buckets) {
-            if(node != null && node.getEntry().getKey().equals(key)){
-                V value = node.getEntry().getValue();
-                buckets[i] = buckets[i].getNextElement();
-                size--;
-                return value;
-            }
+		for (Node<K, V> node : buckets) {
+			if (node != null && node.getEntry().getKey().equals(key)) {
+				V value = node.getEntry().getValue();
+				buckets[i] = buckets[i].getNextElement();
+				size--;
+				return value;
+			}
 
-            Node<K, V> lastNode = node;
-            while(node != null){
+			Node<K, V> lastNode = node;
+			while (node != null) {
 
-                if(node.getEntry().getKey().equals(key)){
-                    V value = node.getEntry().getValue();
-                    lastNode.setNextElement(node.getNextElement());
-                    size--;
-                    return value;
-                }
+				if (node.getEntry().getKey().equals(key)) {
+					V value = node.getEntry().getValue();
+					lastNode.setNextElement(node.getNextElement());
+					size--;
+					return value;
+				}
 
-                lastNode = node;
-                node = node.getNextElement();
-            }
+				lastNode = node;
+				node = node.getNextElement();
+			}
 
-            i++;
-        }
+			i++;
+		}
 
-        return null;
-    }
+		return null;
+	}
 
-    public boolean containsKey(K key) {
-        for (Node<K, V> node : buckets) {
-            while (node != null) {
-                MyEntry<K, V> entry = node.getEntry();
-                if (entry.getKey() == key) {
-                    return true;
-                }
+	public boolean containsKey(K key) {
+		for (Node<K, V> node : buckets) {
+			while (node != null) {
+				MyEntry<K, V> entry = node.getEntry();
+				if (entry.getKey() == key) {
+					return true;
+				}
 
-                node = node.getNextElement();
-            }
-        }
+				node = node.getNextElement();
+			}
+		}
 
-        return false;
-    }
+		return false;
+	}
 
-    public boolean containsValue(V value) {
-        for (Node<K, V> node : buckets) {
-            while (node != null) {
-                MyEntry<K, V> entry = node.getEntry();
-                if (entry.getValue() == value) {
-                    return true;
-                }
+	public boolean containsValue(V value) {
+		for (Node<K, V> node : buckets) {
+			while (node != null) {
+				MyEntry<K, V> entry = node.getEntry();
+				if (entry.getValue() == value) {
+					return true;
+				}
 
-                node = node.getNextElement();
-            }
-        }
+				node = node.getNextElement();
+			}
+		}
 
-        return false;
-    }
+		return false;
+	}
 
-    public int size() {
-        //  Return the number of the Entry objects stored in all the buckets
-        return size;
-    }
+	public int size() {
+		//  Return the number of the Entry objects stored in all the buckets
+		return size;
+	}
 
-    public void clear() {
-        //  Remove all the Entry objects from the bucket list
-        for (Node node : buckets) {
-            node = null;
-        }
-        size = 0;
-    }
+	public void clear() {
+		//  Remove all the Entry objects from the bucket list
+		for (Node node : buckets) {
+			node = null;
+		}
+		size = 0;
+	}
 
-    public Set<MyEntry> entrySet() {
-        //  Return a Set containing all the Entry objects
-        Set<MyEntry> entrySet = new HashSet<>();
-        for (Node node : buckets) {
-            while (node != null) {
-                MyEntry entry = node.getEntry();
-                entrySet.add(entry);
+	public Set<MyEntry> entrySet() {
+		//  Return a Set containing all the Entry objects
+		Set<MyEntry> entrySet = new HashSet<>();
+		for (Node node : buckets) {
+			while (node != null) {
+				MyEntry entry = node.getEntry();
+				entrySet.add(entry);
 
-                node = node.getNextElement();
-            }
-        }
-        return entrySet;
-    }
+				node = node.getNextElement();
+			}
+		}
+		return entrySet;
+	}
 
-    public boolean isEmpty() {
-        return size == 0;
-    }
+	public boolean isEmpty() {
+		return size == 0;
+	}
 
-    public static class MyEntry<K, V> {
-        private K key;
-        private V value;
+	public static class MyEntry<K, V> {
+		private K key;
+		private V value;
 
-        public MyEntry(K key, V value) {
-            this.key = key;
-            this.value = value;
-        }
+		public MyEntry(K key, V value) {
+			this.key = key;
+			this.value = value;
+		}
 
-        public K getKey() {
-            return key;
-        }
+		public K getKey() {
+			return key;
+		}
 
-        public void setKey(K key) {
-            this.key = key;
-        }
+		public void setKey(K key) {
+			this.key = key;
+		}
 
-        public V getValue() {
-            return value;
-        }
+		public V getValue() {
+			return value;
+		}
 
-        public void setValue(V value) {
-            this.value = value;
-        }
-    }
+		public void setValue(V value) {
+			this.value = value;
+		}
+	}
 
-    static class Node<K, V> {
-        private final MyEntry<K, V> entry;
-        private final int hash;
-        private Node<K, V> nextElement;
+	static class Node<K, V> {
+		private final MyEntry<K, V> entry;
+		private final int hash;
+		private Node<K, V> nextElement;
 
-        public Node(MyEntry<K, V> entry, int hash, Node<K, V> nextElement) {
-            this.entry = entry;
-            this.hash = hash;
-            this.nextElement = nextElement;
-        }
+		public Node(MyEntry<K, V> entry, int hash, Node<K, V> nextElement) {
+			this.entry = entry;
+			this.hash = hash;
+			this.nextElement = nextElement;
+		}
 
-        public MyEntry<K, V> getEntry() {
-            return entry;
-        }
+		public MyEntry<K, V> getEntry() {
+			return entry;
+		}
 
-        public int getHash() {
-            return hash;
-        }
+		public int getHash() {
+			return hash;
+		}
 
-        public Node<K, V> getNextElement() {
-            return nextElement;
-        }
+		public Node<K, V> getNextElement() {
+			return nextElement;
+		}
 
-        public void setNextElement(Node<K, V> nextElement) {
-            this.nextElement = nextElement;
-        }
+		public void setNextElement(Node<K, V> nextElement) {
+			this.nextElement = nextElement;
+		}
 
 
-    }
+	}
 }

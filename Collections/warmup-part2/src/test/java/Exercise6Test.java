@@ -170,8 +170,8 @@ public class Exercise6Test {
 
         Assert.assertEquals("Test if map resizing succeeded (size)", countries.size(), myHashMap.size());
         Assert.assertTrue("Test if map resizing succeeded (containsAll)",
-                countries.entrySet().containsAll(myHashMap.entrySet()) &&
-                myHashMap.entrySet().containsAll(countries.entrySet()));
+                countries.keySet().containsAll(myHashMap.keySet()) &&
+                myHashMap.keySet().containsAll(countries.keySet()));
     }
 
     private MyResizableHashMap<String, String> getMyHashMap(){
