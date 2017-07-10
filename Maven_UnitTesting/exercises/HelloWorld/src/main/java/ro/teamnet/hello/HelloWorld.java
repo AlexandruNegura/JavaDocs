@@ -1,0 +1,35 @@
+package ro.teamnet.hello;
+
+
+import org.apache.log4j.Logger;
+
+/**
+ * Created by Alexandru.Negura on 7/10/2017.
+ */
+public class HelloWorld {
+    final static Logger logger = Logger.getLogger(HelloWorld.class.getName());
+
+    /**
+     * method for saying hello
+     */
+    public void sayHello(){
+        System.out.println("Hello World!");
+        logger.debug("DEBUG -> Enters in sayHello() method from HelloWorld");
+        logger.info("INFO -> Enters in returnHelloKey from HelloWorld");
+    }
+
+    /**
+     * method for returning a key
+     * @return - The HelloWorld key
+     */
+    public String returnHelloKey(){
+        return "HelloKey";
+    }
+
+    public static void main(String[] args) {
+        System.setProperty("log4j.debug", "");
+        HelloWorld helloWorld = new HelloWorld();
+        helloWorld.sayHello();
+    }
+
+}
