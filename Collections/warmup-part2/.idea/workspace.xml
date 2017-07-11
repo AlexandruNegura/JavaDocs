@@ -2,31 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e8f4024-8fce-4f06-9186-5ed229b5aae9" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/exercise0/Exercise0.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/exercise1/Exercise1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/exercise2/Exercise2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/exercise2/Student.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/exercise2/StudentWithoutEqualsAndHashCode.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/exercise2/StudentWithoutHashCode.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/exercise3/AutismIsHighWIthThisOne.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/exercise3/DumbStudent.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/exercise3/EvenDumberStudent.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/exercise3/Main.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/exercise3/OutOfNamesClass.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/exercise3/Student.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/exercise4/MyHashMap$MyEntry.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/exercise4/MyHashMap.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/exercise5/MyHashMapWithMyImplementedList$MyEntry.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/exercise5/MyHashMapWithMyImplementedList.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/exercise5/MyImplementedList$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/exercise5/MyImplementedList$WhateverComparator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/exercise5/MyImplementedList.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/exercise5/OutOfBoundsException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/exercise6/MyResizableHashMap$MyEntry.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/exercise6/MyResizableHashMap$Node.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/exercise6/MyResizableHashMap.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Maven_UnitTesting/README.md" afterPath="$PROJECT_DIR$/../../Maven_UnitTesting/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../SQL/README.md" afterPath="$PROJECT_DIR$/../../SQL/README.md" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -203,7 +179,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1616" />
+    <option name="width" value="1612" />
     <option name="height" value="876" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -222,7 +198,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -359,7 +335,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -915,6 +891,7 @@
       <workItem from="1499668096571" duration="517000" />
       <workItem from="1499668812931" duration="808000" />
       <workItem from="1499671209191" duration="158000" />
+      <workItem from="1499781501166" duration="223000" />
     </task>
     <servers />
   </component>
@@ -951,10 +928,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30266000" />
+    <option name="totallyTimeSpent" value="30489000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <frame x="-8" y="-8" width="1612" height="876" extended-state="0" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -970,7 +947,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2596401" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26288658" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+
+    <changeSet id="changelog-ALEX-2.0" author="alex">
+        <createTable tableName="ADDRESS_ALEX_BWOSS">
+            <column name="ADDR_ID" type = "number">
+                <constraints primaryKey="true" />
+            </column>
+            <column name="STREET" type="varchar2(50 BYTE)" />
+            <column name="NO" type="number(6)" />
+            <column name="CITY" type="VARCHAR2(30 BYTE)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
